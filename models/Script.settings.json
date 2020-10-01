@@ -1,0 +1,32 @@
+{
+    "connection": "default",
+    "kind": "collectionType",
+    "globalId": "PythonScript",
+    "info": {
+        "name": "Python Script Info",
+        "description": ""
+    },
+    "options": { "timestamps": true, "increments": true, "comment": "" },
+    "attributes": {
+        "name": {
+            "type": "string",
+            "require": true,
+            "configurable": false
+        },
+        "command": {
+            "type": "string",
+            "require": true,
+            "configurable": false
+        },
+        "params": {
+            "type": "string",
+            "require": true,
+            "configurable": false
+        },
+        "location": {
+            "type": "string",
+            "require": true,
+            "configurable": false
+        }
+    }
+}
