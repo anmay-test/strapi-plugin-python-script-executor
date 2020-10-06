@@ -34,12 +34,12 @@ function ScriptConfig({ script, executeCommand }) {
           <Row>
             <Col md={6}>
               <FormGroup>
-                <Label for="txtCommand">Command</Label>
+                <Label for="txtCommand">Script</Label>
                 <Input
                   type="text"
                   name="txtCommand"
                   id="txtCommand"
-                  defaultValue={script.command}
+                  defaultValue={script.script}
                   readOnly="readonly"
                   placeholder="Please enter your command"
                 />
@@ -80,14 +80,14 @@ function ScriptConfig({ script, executeCommand }) {
                 size="md"
                 onClick={() => {
                   executeCommand({
-                    command: script.command,
+                    command: script.script,
                     params: script.params,
                     id: script.id,
                     isForceUpdate: forceUpdate,
                   });
                 }}
               >
-                Execute Command
+                Execute script
               </Button>
             </Col>
           </Row>

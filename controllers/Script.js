@@ -82,7 +82,7 @@ module.exports = {
 
     const entity = await strapi.query(modelName, pluginId).findOne({ id: id });
     if (!entity) {
-      ctx.badRequest("Command is not exist");
+      ctx.badRequest("Script is not exist");
     }
 
     const { spawn } = require("child_process");
@@ -128,27 +128,31 @@ module.exports = {
     //   cwd: entity.location,
     // });
     if (entity.params) {
-      console.log([entity.command, ...entity.params.split(" ")]);
+      console.log([
+        entity.script,
+        ...entity.params.split(" "),
+        entity.location,
+      ]);
       ls = spawn(
         pythonExecutable,
-        [entity.command, ...entity.params.split(" ")],
+        [entity.script, ...entity.params.split(" ")],
         {
           cwd: entity.location,
         }
       );
     } else {
-      console.log([entity.command]);
-      ls = spawn(pythonExecutable, [entity.command], { cwd: entity.location });
+      console.log([entity.script, entity.location]);
+      ls = spawn(pythonExecutable, [entity.script], { cwd: entity.location });
     }
 
     // if (entity.params) {
-    //   ls = spawn(entity.command, entity.params.split(" "), { cwd: "./" });
+    //   ls = spawn(entity.script, entity.params.split(" "), { cwd: "./" });
     // } else {
-    //   ls = spawn(entity.command, [], { cwd: "./" });
+    //   ls = spawn(entity.script, [], { cwd: "./" });
     // }
 
     // ls = spawn(pythonExecutable, myPythonScript, { cwd: "./" });
-    // ls = spawn(entity.command, "__main__.py PBDCIS".split(" "), {
+    // ls = spawn(entity.script, "__main__.py PBDCIS".split(" "), {
     //   cwd: "../scripts/src/programs/",
     // });
 
@@ -173,7 +177,7 @@ module.exports = {
     });
 
     ctx.body = {
-      message: "Your command was executed",
+      message: "Your script was executed",
     };
   },
 };
