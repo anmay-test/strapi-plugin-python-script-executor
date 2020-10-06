@@ -1,6 +1,6 @@
 {
     "name": "strapi-plugin-python-script-executor",
-    "version": "0.0.1",
+    "version": "0.0.4",
     "description": "This is a plugin of strapi Headless CMS used to execute existent Python scripts on server.",
     "strapi": {
         "name": "Python script executor",
