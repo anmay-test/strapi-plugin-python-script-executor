@@ -1,40 +1,40 @@
 {
-  "name": "strapi-plugin-python-script-executor",
-  "version": "0.0.1",
-  "description": "This is a plugin of strapi Headless CMS used to execute existent Python scripts on server.",
-  "strapi": {
-    "name": "Python script executor",
-    "icon": "plug",
-    "description": "Execute Python scripts on server."
-  },
-  "dependencies": {
-    "socket.io": "^2.3.0"
-  },
-  "devDependencies": {},
-  "author": "Brian Vo <vnbaotran@gmail.com> (https://www.brianvo.dev)",
-  "maintainers": [
-    "Brian Vo <vnbaotran@gmail.com> (https://www.brianvo.dev)"
-  ],
-  "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT",
-  "keywords": [
-    "strapi",
-    "strapi plugin",
-    "python executor"
-  ],
-  "scripts": {
-    "test": "echo \"There is no test yet\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tranvnb/python-script-executor.git"
-  },
-  "bugs": {
-    "url": "https://github.com/tranvnb/python-script-executor/issues"
-  },
-  "homepage": "https://github.com/tranvnb/python-script-executor#readme",
-  "main": "index.js"
+    "name": "strapi-plugin-python-script-executor",
+    "version": "0.0.1",
+    "description": "This is a plugin of strapi Headless CMS used to execute existent Python scripts on server.",
+    "strapi": {
+        "name": "Python script executor",
+        "icon": "plug",
+        "description": "Execute Python scripts on server."
+    },
+    "dependencies": {
+        "socket.io": "^2.3.0"
+    },
+    "devDependencies": {},
+    "author": "Brian Vo <vnbaotran@gmail.com> (https://www.brianvo.dev)",
+    "maintainers": [
+        "Brian Vo <vnbaotran@gmail.com> (https://www.brianvo.dev)"
+    ],
+    "engines": {
+        "node": ">=10.0.0",
+        "npm": ">=6.0.0"
+    },
+    "license": "MIT",
+    "keywords": [
+        "strapi",
+        "strapi plugin",
+        "python executor"
+    ],
+    "scripts": {
+        "test": "echo \"There is no test yet\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tranvnb/strapi-plugin-python-script-executor.git"
+    },
+    "bugs": {
+        "url": "https://github.com/tranvnb/strapi-plugin-python-script-executor/issues"
+    },
+    "homepage": "https://github.com/tranvnb/strapi-plugin-python-script-executor#readme",
+    "main": "index.js"
 }

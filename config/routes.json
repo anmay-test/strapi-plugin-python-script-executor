@@ -20,7 +20,7 @@
             "path": "/script",
             "handler": "Script.store",
             "config": {
-                "policies": ["plugins::python-script-executor.isSuperAdmin"]
+                "policies": ["plugins::strapi-plugin-python-script-executor.isSuperAdmin"]
             }
         },
         {
@@ -28,7 +28,7 @@
             "path": "/script/:id",
             "handler": "Script.update",
             "config": {
-                "policies": ["plugins::python-script-executor.isSuperAdmin"]
+                "policies": ["plugins::strapi-plugin-python-script-executor.isSuperAdmin"]
             }
         },
         {
@@ -36,14 +36,14 @@
             "path": "/script/:id",
             "handler": "Script.delete",
             "config": {
-                "policies": ["plugins::python-script-executor.isSuperAdmin"]
+                "policies": ["plugins::strapi-plugin-python-script-executor.isSuperAdmin"]
             }
         }, {
             "method": "POST",
             "path": "/script/run",
             "handler": "Script.executeCommand",
             "config": {
-                "policies": ["plugins::python-script-executor.isSuperAdmin"]
+                "policies": ["plugins::strapi-plugin-python-script-executor.isSuperAdmin"]
             }
         }
     ]

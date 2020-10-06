@@ -34,12 +34,12 @@ function ScriptConfig({ script, executeCommand }) {
           <Row>
             <Col md={6}>
               <FormGroup>
-                <Label for="txtCommand">Command</Label>
+                <Label for="txtCommand">Script</Label>
                 <Input
                   type="text"
                   name="txtCommand"
                   id="txtCommand"
-                  defaultValue={script.command}
+                  defaultValue={script.script}
                   readOnly="readonly"
                   placeholder="Please enter your command"
                 />

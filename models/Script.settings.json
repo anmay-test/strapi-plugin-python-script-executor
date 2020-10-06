@@ -13,7 +13,7 @@
             "require": true,
             "configurable": false
         },
-        "command": {
+        "script": {
             "type": "string",
             "require": true,
             "configurable": false

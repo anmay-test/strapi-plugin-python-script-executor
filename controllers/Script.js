@@ -4,7 +4,7 @@
 //parseMultipartData is used when get all data from submitted form with files - upload files
 // const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
 const { sanitizeEntity, parseMultipartData } = require("strapi-utils");
-const pluginId = "python-script-executor";
+const pluginId = "strapi-plugin-python-script-executor";
 const modelName = "script";
 const socketChannel = "console";
 /**
@@ -128,27 +128,27 @@ module.exports = {
     //   cwd: entity.location,
     // });
     if (entity.params) {
-      console.log([entity.command, ...entity.params.split(" ")]);
+      console.log([entity.script, ...entity.params.split(" ")]);
       ls = spawn(
         pythonExecutable,
-        [entity.command, ...entity.params.split(" ")],
+        [entity.script, ...entity.params.split(" ")],
         {
           cwd: entity.location,
         }
       );
     } else {
-      console.log([entity.command]);
-      ls = spawn(pythonExecutable, [entity.command], { cwd: entity.location });
+      console.log([entity.script]);
+      ls = spawn(pythonExecutable, [entity.script], { cwd: entity.location });
     }
 
     // if (entity.params) {
-    //   ls = spawn(entity.command, entity.params.split(" "), { cwd: "./" });
+    //   ls = spawn(entity.script, entity.params.split(" "), { cwd: "./" });
     // } else {
-    //   ls = spawn(entity.command, [], { cwd: "./" });
+    //   ls = spawn(entity.script, [], { cwd: "./" });
     // }
 
     // ls = spawn(pythonExecutable, myPythonScript, { cwd: "./" });
-    // ls = spawn(entity.command, "__main__.py PBDCIS".split(" "), {
+    // ls = spawn(entity.script, "__main__.py PBDCIS".split(" "), {
     //   cwd: "../scripts/src/programs/",
     // });
 
