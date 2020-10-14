@@ -90,7 +90,7 @@ module.exports = {
 
     /** ******************/
     var myPythonScript = "../scripts/src/programs/program.py";
-    var pythonExecutable = "python";
+    var pythonExecutable = "python3";
 
     // Function to convert an Uint8Array to a string
     // var uint8arrayToString = function (data) {
