@@ -1,8 +1,5 @@
 "use strict";
 
-//I only need this if I am returning content type data/collection
-//parseMultipartData is used when get all data from submitted form with files - upload files
-// const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
 const { sanitizeEntity, parseMultipartData } = require("strapi-utils");
 const pluginId = "python-script-executor";
 const modelName = "script";
@@ -21,14 +18,12 @@ module.exports = {
    */
 
   index: async (ctx) => {
-    //to access underline model, use this: strapi.query(modelName, plugin).model;
     let entities;
     if (ctx.query._q) {
       entities = await strapi.query(modelName, pluginId).search(ctx.query);
     } else {
       entities = await strapi.query(modelName, pluginId).find(ctx.query);
     }
-    // const scripts = await strapi.query("script", "python-script-executor").search(); //OK
     const scripts = entities.map((entity) =>
       sanitizeEntity(entity, {
         model: strapi.query(modelName, pluginId).model,
@@ -58,7 +53,6 @@ module.exports = {
       const { data, files } = parseMultipartData(ctx);
       entity = await strapi.query(modelName, pluginId).create(data, { files });
     } else {
-      // console.log(ctx.request.body);
       entity = await strapi.query(modelName, pluginId).create(ctx.request.body);
     }
     const result = sanitizeEntity(entity, {
@@ -88,51 +82,9 @@ module.exports = {
     const { spawn } = require("child_process");
     let ls;
 
-    /** ******************/
-    var myPythonScript = "../scripts/src/programs/program.py";
     var pythonExecutable = "python3";
 
-    // Function to convert an Uint8Array to a string
-    // var uint8arrayToString = function (data) {
-    //   return String.fromCharCode.apply(null, data);
-    // };
-
-    // // spawn = require("child_process").spawn;
-    // const scriptExecution = spawn(pythonExecutable, [myPythonScript]);
-    // // Handle normal output
-    // scriptExecution.stdout.on("data", (data) => {
-    //   strapi.io.to(socketId).emit(socketChannel, `${data}`);
-    //   console.log(`${data}`);
-    // });
-
-    // // Handle error output
-    // scriptExecution.stderr.on("data", (data) => {
-    //   // As said before, convert the Uint8Array to a readable string.
-    //   console.log(uint8arrayToString(data));
-    //   strapi.io.to(socketId).emit(socketChannel, `${data}`);
-    //   // console.log(`${data}`);
-    // });
-
-    // scriptExecution.on("exit", (code) => {
-    //   console.log("Process quit with code : " + code);
-    //   strapi.io.to(socketId).emit(socketChannel, `${code}`);
-    //   // console.log(`${code}`);
-    // });
-
-    // ctx.send({
-    //   message: "ok",
-    // });
-
-    /** ******************/
-    // ls = spawn("python", ["program.py", "PBDCIS"], {
-    //   cwd: entity.location,
-    // });
     if (entity.params) {
-      console.log([
-        entity.script,
-        ...entity.params.split(" "),
-        entity.location,
-      ]);
       ls = spawn(
         pythonExecutable,
         [entity.script, ...entity.params.split(" ")],
@@ -141,39 +93,23 @@ module.exports = {
         }
       );
     } else {
-      console.log([entity.script, entity.location]);
       ls = spawn(pythonExecutable, [entity.script], { cwd: entity.location });
     }
 
-    // if (entity.params) {
-    //   ls = spawn(entity.script, entity.params.split(" "), { cwd: "./" });
-    // } else {
-    //   ls = spawn(entity.script, [], { cwd: "./" });
-    // }
-
-    // ls = spawn(pythonExecutable, myPythonScript, { cwd: "./" });
-    // ls = spawn(entity.script, "__main__.py PBDCIS".split(" "), {
-    //   cwd: "../scripts/src/programs/",
-    // });
-
     ls.stdout.on("data", (data) => {
       strapi.io.to(socketId).emit(socketChannel, `${data}`);
-      console.log(`${data}`);
     });
 
     ls.stderr.on("data", (data) => {
       strapi.io.to(socketId).emit(socketChannel, `${data}`);
-      console.log(`${data}`);
     });
 
     ls.on("error", (error) => {
       strapi.io.to(socketId).emit(socketChannel, `${error.message}`);
-      console.log(`${error}`);
     });
 
     ls.on("close", (code) => {
       strapi.io.to(socketId).emit(socketChannel, `${code}`);
-      console.log(`${code}`);
     });
 
     ctx.body = {

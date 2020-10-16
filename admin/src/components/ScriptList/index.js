@@ -1,15 +1,9 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
-import { request } from "strapi-helper-plugin";
 import { Wrapper } from "./Wrapper";
 import PropTypes from "prop-types";
 import { Row, Col, Button } from "reactstrap";
-import pluginId from "../../pluginId";
-import useScripts from "../../hooks/useScripts";
-import { Switch, Route, NavLink } from "react-router-dom";
 import ScriptContext from "../../contexts/scriptsContext";
 import ModalContext from "../../contexts/modalContext";
-
-const initialState = [];
 
 function ScriptList({ scripts, isShowAdd }) {
   const { selectedId, selectScript } = useContext(ScriptContext);

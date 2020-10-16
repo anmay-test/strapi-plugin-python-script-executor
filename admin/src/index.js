@@ -26,10 +26,6 @@ export default (strapi) => {
           defaultMessage: "Environment Variables",
         },
         to: `${strapi.settingsBaseURL}/${pluginId}/environment`,
-        // Component: SettingLink,
-        //     // Bool : https://reacttraining.com/react-router/web/api/Route/exact-bool
-        //     exact: false,
-        // name: "setting",
         permissions: [
           {
             action: `plugins::${pluginId}.read`,
@@ -57,14 +53,6 @@ export default (strapi) => {
     preventComponentRendering: false,
     trads,
     menu: {
-      collectionTypesSectionLinks: [
-        {
-          isDisplayed: false,
-          label: "Test",
-          schema: { modelType: "contentType", kind: "collectionType" },
-          uid: `plugins::${pluginId}.PythonScript`,
-        },
-      ],
       pluginsSectionLinks: [
         {
           destination: `/plugins/${pluginId}`,
@@ -84,7 +72,7 @@ export default (strapi) => {
       ],
     },
     settings: {
-      mainComponent: Settings,
+      // mainComponent: Settings, // temporarily disable setting menu
       menuSection,
     },
   };

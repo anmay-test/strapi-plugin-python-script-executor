@@ -1,30 +1,23 @@
 import React, { useReducer, useContext, useState } from "react";
-import { request } from "strapi-helper-plugin";
-import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import ScriptContext from "../../contexts/scriptsContext";
 import {
   Row,
   Col,
   Button,
-  Form,
   FormGroup,
   Label,
   Input,
-  FormText,
   CustomInput,
   Card,
   CardBody,
 } from "reactstrap";
-import pluginId from "../../pluginId";
 import Wrapper from "./Wrapper";
 
 const initialState = {};
 const reducer = (state, action) => {};
 
 function ScriptConfig({ script, executeCommand }) {
-  const { selectedId, socket } = useContext(ScriptContext);
-  const [state, dispatch] = useReducer(reducer, initialState);
   const [forceUpdate, setForceUpdate] = useState(false);
 
   return (

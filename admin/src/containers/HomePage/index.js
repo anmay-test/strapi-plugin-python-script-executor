@@ -4,8 +4,7 @@
  *
  */
 
-import React, { memo, useContext, useEffect, useState } from "react";
-// import PropTypes from 'prop-types';
+import React, { memo, useEffect, useState } from "react";
 import pluginId from "../../pluginId";
 import { request } from "strapi-helper-plugin";
 import ScriptList from "../../components/ScriptList/index";
@@ -14,19 +13,14 @@ import ScriptConsole from "../../components/ScriptConsole/index";
 import { Wrapper } from "./Wrapper";
 import ScriptContext from "../../contexts/scriptsContext";
 import ModalContext from "../../contexts/modalContext";
-import { Route, useRouteMatch, useHistory } from "react-router-dom";
 import io from "socket.io-client";
 import FromModal from "../FormModal";
-// const ScriptContext = React.createContext([]);
 
 const HomePage = () => {
-  const history = useHistory();
-  const { path, url } = useRouteMatch();
   const [scripts, setScripts] = useState([]);
   const [socket, setSocket] = useState(null);
   const [consoleResult, setConsoleResult] = useState("");
   const [socketConnected, setSocketConnected] = useState(false);
-  // const [state, dispatch] = useReducer(reducer, initialState);
 
   const [selectedId, setSelectedId] = useState(-1);
 
@@ -53,33 +47,13 @@ const HomePage = () => {
 
   const selectScript = (id) => {
     setSelectedId(id);
-    // history.push(`${pluginId}/script/${id}`);
-  };
-
-  const handleSocketConnection = () => {
-    if (socketConnected) socket.disconnect();
-    else {
-      socket.connect();
-    }
-  };
-
-  const handleExecuteCommand = () => {
-    if (socketConnected) {
-      socket.emit(
-        "fromClient",
-        "Hey Server, it is me calling you with Id: " + socket.id
-      );
-    }
   };
 
   useEffect(() => {
-    // dispatch({ type: "loadAllScripts" });
-
     const response = request(`/${pluginId}/script`, {
       method: "GET",
     })
       .then((resp) => {
-        // strapi.notification.success("success");
         if (resp.data && resp.data.length > 0) {
           setScripts(resp.data);
           setSelectedId(resp.data[0].id);
@@ -104,14 +78,9 @@ const HomePage = () => {
     });
 
     socket.on("console", (data) => {
-      // if (data.length > 0 && data[0] instanceof String) {
-      // console.log(data[0].replace(/(?:\r\n|\r|\n)/g, "<br>"));
-      // }
       setConsoleResult((prevValue) => {
-        // console.log("previous consoleResult:", prevValue);
         return prevValue + "\n" + data;
       });
-      // console.log("hello from server newest consoleResult:", consoleResult);
     });
   }, [socket]);
 
@@ -168,7 +137,6 @@ const HomePage = () => {
           <FromModal />
         </ModalContext.Provider>
       </ScriptContext.Provider>
-      {/* </Route> */}
     </Wrapper>
   );
 };

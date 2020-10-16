@@ -16,7 +16,7 @@ import {
 import PropTypes from "prop-types";
 import ModalContext from "../../contexts/modalContext";
 
-const FromModal = ({ title, children }) => {
+const FromModal = ({ title }) => {
   const { modal, toggleModal, submitFormModal } = useContext(ModalContext);
   const [command, setCommand] = useState("");
   const [params, setParams] = useState("");
